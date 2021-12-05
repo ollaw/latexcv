@@ -1,0 +1,43 @@
+stages:
+- build
+- release
+
+
+build:
+  stage: build
+  image: registry.gitlab.com/islandoftex/images/texlive:latest
+  script:
+    - pdflatex cv-en.tex
+    - pdflatex cv-it.tex
+    - echo PRV_JOB_ID=$CI_JOB_ID >> job-ref.env
+  after_script:
+    - cat cv-en.log
+    - cat cv-it.log
+  artifacts:
+    expire_in: 1 week
+    paths:
+      - cv-en.pdf
+      - cv-it.pdf
+    reports:
+      dotenv: job-ref.env
+
+
+
+release:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/release-cli:latest
+  script:
+    - echo 'Generating releases..'
+  rules:
+    - if: $CI_COMMIT_TAG                 
+  release:
+    name: 'Release $CI_COMMIT_TAG'
+    description: 'Created using Gitlab-CI' 
+    tag_name: '$CI_COMMIT_TAG'                                  
+    ref: '$CI_COMMIT_TAG'
+    assets: 
+      links:
+        - name: 'cv-ita-${CI_COMMIT_TAG}'
+          url: 'https://gitlab.com/ollaww/latexcv/-/jobs/${PRV_JOB_ID}/artifacts/file/cv-it.pdf'
+        - name: 'cv-en-${CI_COMMIT_TAG}'
+          url: 'https://gitlab.com/ollaww/latexcv/-/jobs/${PRV_JOB_ID}/artifacts/file/cv-en.pdf'
