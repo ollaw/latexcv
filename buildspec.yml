@@ -11,5 +11,12 @@ phases:
 
 artifacts:
   files:
-  - "cv-it.pdf"
-  - "cv-en.pdf"
+  - "*.pdf"
+  - "*.log"
+  secondary-artifacts:
+    artifact1:
+      files:
+        - cv-it.pdf
+    artifact2:
+      files:
+        - cv-en.pdf
