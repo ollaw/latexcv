@@ -1,0 +1,15 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - pdflatex cv-en.tex
+      - pdflatex cv-it.tex
+    finally:
+      - cat cv-en.log
+      - cat cv-it.log
+
+artifacts:
+  files:
+  - "cv-it.pdf"
+  - "cv-en.pdf"
