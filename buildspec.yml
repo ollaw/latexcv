@@ -14,9 +14,9 @@ artifacts:
   - "*.pdf"
   - "*.log"
   secondary-artifacts:
-    artifact1:
+    itacv:
       files:
         - cv-it.pdf
-    artifact2:
+    encv:
       files:
         - cv-en.pdf
