@@ -5,4 +5,4 @@
 # latexcv
 My personal CV.
 
-Latest [releases](https://gitlab.com/ollaww/latexcv/-/releases/).
+Latest [releases](https://gitlab.com/ollaww/latexcv/-/releases/). 
