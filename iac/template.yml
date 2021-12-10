@@ -1,0 +1,163 @@
+
+AWSTemplateFormatVersion: '2010-09-09'
+Description: 'Infrastructure to build a CI/CD process on AWS to automate the creation of PDF from .tex files'
+
+Resources:
+
+  CodeBuildPublicArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketEncryption: 
+          ServerSideEncryptionConfiguration: 
+          - BucketKeyEnabled: true
+      BucketName: codebuild-latexcv-public-artifacts
+      Tags: 
+        - Key: application
+          Value: latexcv
+
+  CodeBuildPrivateArtifactBucket:
+    Type: AWS::S3::Bucket
+    Properties: 
+      BucketEncryption: 
+          ServerSideEncryptionConfiguration: 
+          - BucketKeyEnabled: true
+      BucketName: codebuild-latexcv-artifacts
+      Tags: 
+        - Key: application
+          Value: latexcv
+
+  LatexCVRepo:
+    Type: AWS::CodeCommit::Repository
+    Properties: 
+      RepositoryDescription: "My personal CV"
+      RepositoryName: latexcv-2
+      Tags: 
+        - Key: application
+          Value: latexcv
+
+  BuildProject:
+    Type: AWS::CodeBuild::Project
+    Properties: 
+      BadgeEnabled: true
+      ConcurrentBuildLimit: 1
+      Name: latexcv-builder
+      Source: 
+        Type: CODECOMMIT
+        Location: !GetAtt LatexCVRepo.CloneUrlHttp
+      SourceVersion: refs/heads/main
+      Artifacts: 
+        EncryptionDisabled: false
+        Location: !Ref CodeBuildPrivateArtifactBucket
+        NamespaceType: BUILD_ID
+        OverrideArtifactName: false
+        Packaging: NONE
+        Type: S3
+      SecondaryArtifacts: 
+        - ArtifactIdentifier: itacv
+          EncryptionDisabled: false
+          Location: !Ref CodeBuildPublicArtifactBucket
+          NamespaceType: BUILD_ID
+          OverrideArtifactName: false
+          Packaging: NONE
+          Type: S3
+        - ArtifactIdentifier: encv
+          EncryptionDisabled: false
+          Location: !Ref CodeBuildPublicArtifactBucket
+          NamespaceType: BUILD_ID
+          OverrideArtifactName: false
+          Packaging: NONE
+          Type: S3
+      Environment: 
+        ComputeType: BUILD_GENERAL1_SMALL
+        Image: registry.gitlab.com/islandoftex/images/texlive:latest
+        Type: LINUX_CONTAINER
+      LogsConfig: 
+        CloudWatchLogs: 
+          GroupName: codebuild
+          Status: ENABLED
+          StreamName: latexcv-2
+      ServiceRole: !GetAtt CodeBuildServiceRole.Arn
+      ResourceAccessRole: !GetAtt CodeBuildServiceRole.Arn
+      TimeoutInMinutes: 10
+      Visibility: PRIVATE
+      Tags: 
+        - Key: application
+          Value: latexcv
+
+  CodeBuildServiceRole:  
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: codebuild.amazonaws.com
+          Action: sts:AssumeRole
+      Description: "Role used by CodeBuild to store on S3 and create Logs"
+      Policies: 
+        - PolicyName: codebuild-policy-latexcv
+          PolicyDocument: 
+            Version: '2012-10-17'
+            Statement:
+            - Effect: Allow
+              Resource:
+              - arn:aws:logs:eu-central-1:152119833031:log-group:codebuild
+              - arn:aws:logs:eu-central-1:152119833031:log-group:codebuild:*
+              Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            - Effect: Allow
+              Resource:
+              - arn:aws:logs:eu-central-1:152119833031:log-group:/aws/codebuild/latexcv-2
+              - arn:aws:logs:eu-central-1:152119833031:log-group:/aws/codebuild/latexcv-2:*
+              Action:
+              - logs:CreateLogGroup
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            - Effect: Allow
+              Resource:
+              - arn:aws:s3:::codepipeline-eu-central-1-*
+              Action:
+              - s3:PutObject
+              - s3:GetObject
+              - s3:GetObjectVersion
+              - s3:GetBucketAcl
+              - s3:GetBucketLocation
+            - Effect: Allow
+              Resource:
+              - !GetAtt LatexCVRepo.Arn
+              Action:
+              - codecommit:GitPull
+            - Effect: Allow
+              Resource:
+              - !Sub
+                - arn:aws:s3:::${bucket}
+                - bucket: !Ref CodeBuildPublicArtifactBucket
+              - !Sub
+                - arn:aws:s3:::${bucket}/*
+                - bucket: !Ref CodeBuildPublicArtifactBucket
+              - !Sub
+                - arn:aws:s3:::${bucket}
+                - bucket: !Ref CodeBuildPrivateArtifactBucket
+              - !Sub
+                - arn:aws:s3:::${bucket}/*
+                - bucket: !Ref CodeBuildPrivateArtifactBucket
+              Action:
+              - s3:PutObject
+              - s3:GetBucketAcl
+              - s3:GetBucketLocation
+            - Effect: Allow
+              Action:
+              - codebuild:CreateReportGroup
+              - codebuild:CreateReport
+              - codebuild:UpdateReport
+              - codebuild:BatchPutTestCases
+              - codebuild:BatchPutCodeCoverages
+              Resource:
+              - arn:aws:codebuild:eu-central-1:152119833031:report-group/latexcv-builder*
+      RoleName: codebuild-servicerole-latexcv
+      Tags: 
+        - Key: application
+          Value: latexcv
