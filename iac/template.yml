@@ -4,7 +4,7 @@ Description: 'Infrastructure to build a CI/CD process on AWS to automate the cre
 
 Resources:
 
-  CodeBuildArtifactBucket:
+  CodeBuildPublicArtifactBucket:
     Type: AWS::S3::Bucket
     Properties: 
       BucketEncryption: 
@@ -37,7 +37,7 @@ Resources:
       SourceVersion: refs/heads/main
       Artifacts: 
         EncryptionDisabled: false
-        Location: !Ref CodeBuildArtifactBucket
+        Location: !Ref CodeBuildPublicArtifactBucket
         NamespaceType: BUILD_ID
         OverrideArtifactName: false
         Packaging: NONE
@@ -45,7 +45,7 @@ Resources:
       # SecondaryArtifacts: 
       #   - ArtifactIdentifier: itacv
       #     EncryptionDisabled: false
-      #     Location: !Ref CodeBuildArtifactBucket
+      #     Location: !Ref CodeBuildPublicArtifactBucket
       #     NamespaceType: BUILD_ID
       #     OverrideArtifactName: false
       #     Packaging: NONE
@@ -53,7 +53,7 @@ Resources:
       #     Name: ita
       #   - ArtifactIdentifier: encv
       #     EncryptionDisabled: false
-      #     Location: !Ref CodeBuildArtifactBucket
+      #     Location: !Ref CodeBuildPublicArtifactBucket
       #     NamespaceType: BUILD_ID
       #     OverrideArtifactName: false
       #     Packaging: NONE
@@ -126,16 +126,16 @@ Resources:
               Resource:
               - !Sub
                 - arn:aws:s3:::${bucket}
-                - bucket: !Ref CodeBuildArtifactBucket
+                - bucket: !Ref CodeBuildPublicArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}/*
-                - bucket: !Ref CodeBuildArtifactBucket
+                - bucket: !Ref CodeBuildPublicArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}
-                - bucket: !Ref CodeBuildArtifactBucket
+                - bucket: !Ref CodeBuildPublicArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}/*
-                - bucket: !Ref CodeBuildArtifactBucket
+                - bucket: !Ref CodeBuildPublicArtifactBucket
               Action:
               - s3:PutObject
               - s3:GetBucketAcl
@@ -153,3 +153,51 @@ Resources:
       Tags: 
         - Key: application
           Value: latexcv
+
+  CodeBuildTriggerRule:
+    Type: AWS::Events::Rule
+    Properties: 
+      Description: "Rule to trigger a build each time there's a push on main branch on latexcv repository"
+      EventBusName: default
+      EventPattern: 
+        detail-type: 
+          - "CodeCommit Repository State Change"
+        source:
+        - aws.codecommit
+        resources:
+        - !GetAtt LatexCVRepo.Arn
+        details:
+          repositoryName:
+          - !GetAtt LatexCVRepo.Name
+          referenceType: 
+          - branch
+          referenceName:
+          - main
+      Name: codebuild-latexcv-push-trigger
+      Targets: 
+        - Id: CodeBuildLatexCV
+          Arn: !GetAtt BuildProject.Arn
+          RoleArn: !GetAtt EventRuleServiceRole.Arn
+
+
+  EventRuleServiceRole:  
+    Type: AWS::IAM::Role
+    Properties: 
+      AssumeRolePolicyDocument: 
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: events.amazonaws.com
+          Action: sts:AssumeRole
+      Description: "Role used by EventBridge to start CodeBuild build"
+      Policies: 
+      - PolicyName: codebuild-policy-latexcv
+        PolicyDocument: 
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Action:
+            - codebuild:StartBuild
+            Resource:
+            - !GetAtt BuildProject.Arn
