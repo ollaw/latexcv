@@ -4,18 +4,7 @@ Description: 'Infrastructure to build a CI/CD process on AWS to automate the cre
 
 Resources:
 
-  CodeBuildPublicArtifactBucket:
-    Type: AWS::S3::Bucket
-    Properties: 
-      BucketEncryption: 
-          ServerSideEncryptionConfiguration: 
-          - BucketKeyEnabled: true
-      BucketName: codebuild-latexcv-public-artifacts
-      Tags: 
-        - Key: application
-          Value: latexcv
-
-  CodeBuildPrivateArtifactBucket:
+  CodeBuildArtifactBucket:
     Type: AWS::S3::Bucket
     Properties: 
       BucketEncryption: 
@@ -25,6 +14,7 @@ Resources:
       Tags: 
         - Key: application
           Value: latexcv
+
 
   LatexCVRepo:
     Type: AWS::CodeCommit::Repository
@@ -47,26 +37,28 @@ Resources:
       SourceVersion: refs/heads/main
       Artifacts: 
         EncryptionDisabled: false
-        Location: !Ref CodeBuildPrivateArtifactBucket
+        Location: !Ref CodeBuildArtifactBucket
         NamespaceType: BUILD_ID
         OverrideArtifactName: false
         Packaging: NONE
         Type: S3
-      SecondaryArtifacts: 
-        - ArtifactIdentifier: itacv
-          EncryptionDisabled: false
-          Location: !Ref CodeBuildPublicArtifactBucket
-          NamespaceType: BUILD_ID
-          OverrideArtifactName: false
-          Packaging: NONE
-          Type: S3
-        - ArtifactIdentifier: encv
-          EncryptionDisabled: false
-          Location: !Ref CodeBuildPublicArtifactBucket
-          NamespaceType: BUILD_ID
-          OverrideArtifactName: false
-          Packaging: NONE
-          Type: S3
+      # SecondaryArtifacts: 
+      #   - ArtifactIdentifier: itacv
+      #     EncryptionDisabled: false
+      #     Location: !Ref CodeBuildArtifactBucket
+      #     NamespaceType: BUILD_ID
+      #     OverrideArtifactName: false
+      #     Packaging: NONE
+      #     Type: S3
+      #     Name: ita
+      #   - ArtifactIdentifier: encv
+      #     EncryptionDisabled: false
+      #     Location: !Ref CodeBuildArtifactBucket
+      #     NamespaceType: BUILD_ID
+      #     OverrideArtifactName: false
+      #     Packaging: NONE
+      #     Type: S3
+      #     Name: eng
       Environment: 
         ComputeType: BUILD_GENERAL1_SMALL
         Image: registry.gitlab.com/islandoftex/images/texlive:latest
@@ -134,16 +126,16 @@ Resources:
               Resource:
               - !Sub
                 - arn:aws:s3:::${bucket}
-                - bucket: !Ref CodeBuildPublicArtifactBucket
+                - bucket: !Ref CodeBuildArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}/*
-                - bucket: !Ref CodeBuildPublicArtifactBucket
+                - bucket: !Ref CodeBuildArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}
-                - bucket: !Ref CodeBuildPrivateArtifactBucket
+                - bucket: !Ref CodeBuildArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}/*
-                - bucket: !Ref CodeBuildPrivateArtifactBucket
+                - bucket: !Ref CodeBuildArtifactBucket
               Action:
               - s3:PutObject
               - s3:GetBucketAcl
