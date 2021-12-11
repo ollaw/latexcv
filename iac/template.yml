@@ -42,23 +42,6 @@ Resources:
         OverrideArtifactName: false
         Packaging: NONE
         Type: S3
-      # SecondaryArtifacts: 
-      #   - ArtifactIdentifier: itacv
-      #     EncryptionDisabled: false
-      #     Location: !Ref CodeBuildPublicArtifactBucket
-      #     NamespaceType: BUILD_ID
-      #     OverrideArtifactName: false
-      #     Packaging: NONE
-      #     Type: S3
-      #     Name: ita
-      #   - ArtifactIdentifier: encv
-      #     EncryptionDisabled: false
-      #     Location: !Ref CodeBuildPublicArtifactBucket
-      #     NamespaceType: BUILD_ID
-      #     OverrideArtifactName: false
-      #     Packaging: NONE
-      #     Type: S3
-      #     Name: eng
       Environment: 
         ComputeType: BUILD_GENERAL1_SMALL
         Image: registry.gitlab.com/islandoftex/images/texlive:latest
