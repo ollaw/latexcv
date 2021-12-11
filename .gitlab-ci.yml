@@ -1,7 +1,21 @@
 stages:
 - build
 - release
+- destroy
 
+variables:
+  CLOUDFORMATION_STACK_NAME: latexcv-cicd-stack
+
+build-aws-infra:
+  stage: build
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest  
+  environment:
+    name: main
+    on_stop: destroy-cf
+  script:
+    - aws cloudformation deploy --stack-name $CLOUDFORMATION_STACK_NAME --template-file iac/template.yml --capabilities CAPABILITY_NAMED_IAM
+#  only: 
+#  - main
 
 build:
   stage: build
@@ -41,3 +55,14 @@ release:
           url: 'https://gitlab.com/ollaww/latexcv/-/jobs/${PRV_JOB_ID}/artifacts/file/cv-it.pdf'
         - name: 'cv-en-${CI_COMMIT_TAG}'
           url: 'https://gitlab.com/ollaww/latexcv/-/jobs/${PRV_JOB_ID}/artifacts/file/cv-en.pdf'
+
+
+destroy-cf:
+  stage: destroy
+  environment:
+    name: main
+    action: stop
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest  
+  script:
+    - aws cloudformation delete-stack --stack-name $CLOUDFORMATION_STACK_NAME
+  when: manual
