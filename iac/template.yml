@@ -11,10 +11,75 @@ Resources:
           ServerSideEncryptionConfiguration: 
           - BucketKeyEnabled: true
       BucketName: codebuild-latexcv-artifacts
+      NotificationConfiguration:
+        LambdaConfigurations:
+          - Function: !GetAtt LambdaUpdateLatestCV.Arn
+            Event: "s3:ObjectCreated:Put"
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: suffix
+                    Value: .pdf
+          - Function: !GetAtt LambdaUpdateLatestCV.Arn
+            Event: "s3:ObjectCreated:Post"
+            Filter:
+              S3Key:
+                Rules:
+                  - Name: suffix
+                    Value: .pdf
       Tags: 
         - Key: application
           Value: latexcv
 
+
+  LambdaInvokePermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      FunctionName: !Ref LambdaUpdateLatestCV
+      Action: "lambda:InvokeFunction"
+      Principal: "s3.amazonaws.com"
+      SourceArn: !GetAtt CodeBuildPublicArtifactBucket.Arn
+
+  LambdaUpdateLatestCV:
+    Type: AWS::Lambda::Function
+    Properties:
+      Code: 
+        ZipFile: |
+          import json
+          import urllib.parse
+          import boto3
+
+          print('Loading function')
+
+          s3 = boto3.resource('s3')
+
+
+          def lambda_handler(event, context):
+              #print("Received event: " + json.dumps(event, indent=2))
+
+              # Get the object from the event and show its content type
+              bucket = event['Records'][0]['s3']['bucket']['name']
+              key = urllib.parse.unquote_plus(event['Records'][0]['s3']['object']['key'], encoding='utf-8')
+              print("Received event for key " + key + " and bucket " + bucket)
+              try:
+                  copy_source = { 'Bucket': bucket, 'Key': key }
+                  s3.meta.client.copy(copy_source, 'codebuild-latexcv-artifacts', 'latest/'+key.split("/")[-1])
+                  return ("Successfully copied on latest directory")
+              except Exception as e:
+                  print(e)
+                  print('Error getting object {} from bucket {}. Make sure they exist and your bucket is in the same region as this function.'.format(key, bucket))
+                  raise e
+
+      Description: "Lambda used to update the 'latest' directory on CVs bucket."
+      FunctionName: latexcv-update-latest
+      Handler: index.lambda_handler
+      MemorySize: 128
+      Role: !GetAtt LambdaExecutionRole.Arn
+      Runtime: python3.8
+      Timeout: 5
+      Tags: 
+        - Key: application
+          Value: latexcv
 
   LatexCVRepo:
     Type: AWS::CodeCommit::Repository
@@ -55,6 +120,38 @@ Resources:
       ResourceAccessRole: !GetAtt CodeBuildServiceRole.Arn
       TimeoutInMinutes: 10
       Visibility: PRIVATE
+      Tags: 
+        - Key: application
+          Value: latexcv
+
+  LambdaExecutionRole:  
+    Type: AWS::IAM::Role
+    Properties: 
+      ManagedPolicyArns: 
+       - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      AssumeRolePolicyDocument: 
+        Version: '2012-10-17'
+        Statement:
+        - Effect: Allow
+          Principal:
+            Service: lambda.amazonaws.com
+          Action: sts:AssumeRole
+      Description: "Role used by CodeBuild to store on S3 and create Logs"
+      Policies: 
+      - PolicyName: latexcv-lambda-s3-updater
+        PolicyDocument: 
+          Version: '2012-10-17'
+          Statement:
+          - Effect: Allow
+            Resource:
+            - arn:aws:s3:::codebuild-latexcv-artifacts
+            - arn:aws:s3:::codebuild-latexcv-artifacts/*
+            Action:
+            - s3:GetObject
+            - s3:GetBucketAcl
+            - s3:GetBucketLocation
+            - s3:PutObject
+      RoleName: latexcv-lambda-role
       Tags: 
         - Key: application
           Value: latexcv
@@ -107,12 +204,6 @@ Resources:
               - codecommit:GitPull
             - Effect: Allow
               Resource:
-              - !Sub
-                - arn:aws:s3:::${bucket}
-                - bucket: !Ref CodeBuildPublicArtifactBucket
-              - !Sub
-                - arn:aws:s3:::${bucket}/*
-                - bucket: !Ref CodeBuildPublicArtifactBucket
               - !Sub
                 - arn:aws:s3:::${bucket}
                 - bucket: !Ref CodeBuildPublicArtifactBucket
