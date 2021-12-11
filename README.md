@@ -5,4 +5,5 @@
 # latexcv
 My personal CV.
 
-Latest [releases](https://gitlab.com/ollaww/latexcv/-/releases/). 
+
+[Italian](https://codebuild-latexcv-artifacts.s3.eu-central-1.amazonaws.com/latest/cv-it.pdf) - [English](https://codebuild-latexcv-artifacts.s3.eu-central-1.amazonaws.com/latest/cv-en.pdf)
