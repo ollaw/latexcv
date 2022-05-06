@@ -4,7 +4,7 @@
 
 \documentclass[english,a4paper]{europasscv}
 \usepackage[english]{babel}
-
+\usepackage{comment}
 \ecvname{Olla Gabriele}
 \ecvaddress{Via Nizza 356bis, Turin (TO), Italy}
 \ecvmobile{+39 348 6011 931}
@@ -30,69 +30,70 @@
   %    \ecvblueitem{}{TODO}
   \ecvsection{Work expereinces}
   
-  \ecvtitle{September 2021 -- Now}{Technology Consultant}
-  \ecvitem{}{DXC Technology - Cernusco sul Naviglio (Italy)}
+  \ecvtitle{May 2022 -- Now}{DevOps Engineer}
+  \ecvitem{}{\textbf{Prima Assicurazioni} - Milan, Italy [\textit{Full Remote working}] }
+%\ \ecvitem[2.5mm]{}{
+%\    \begin{ecvitemize}
+%\        \item TODO
+%\      \end{ecvitemize}
+%\  }
+
+  \ecvtitle{September 2021 -- May 2022}{Cloud Engineer }
+  \ecvitem{}{\textbf{DXC Technology} - Cernusco sul Naviglio (Milan), Italy [\textit{Hybrid working}]}
   \ecvitem[2.5mm]{}{
     \begin{ecvitemize}
-        \item Creation of cloud infrastructures on both public (AWS, Azure, GCP) and private (Openstack) providers;
-        \item Creation and management of CI/CD processes using an platform platform based on Mirantis Kubernetes Engine (Docker Swarm and Kubernetes)
+        \item Installation and administration of Kubernetes Cluster (MKE, RKE\dots);
+        \item Creation of infrastructures on OpenStack;
+        \item Creation and management of CI/CD processes (Docker Swarm, Kubernetes);
+        \item Troubleshooting on Linux VMs.
       \end{ecvitemize}
   }
   
   \ecvtitle{March 2020 -- August 2021}{AWS Cloud Engineer}
-  \ecvitem{}{Storm Reply - Turin (Italy)}
+  \ecvitem{}{\textbf{Storm Reply} - Turin, Italy [\textit{On site}]}
     \ecvitem[2.5mm]{}{
       \begin{ecvitemize}
-        \item Design and creation of Cloud infrastructures (AWS) using IaC tools (CloudFormation, SAM, Serverless Framework, Terraform);
-        \item Creation of DevOps toolchains ( CI/CD, Monitoring ...) for software releases on production environment, by using in particular Jenkins and Kubernetes (EKS)
-        \item Monitoring and Logging platforms (ELK stack).
+        \item Design and implementation of AWS infastructures;
+        \item Creation of DevOps toolchains for production environments (Jenkins, EKS\dots);
+        \item Monitoring and Logging platforms (Grafana, Prometheus, ELK\dots).
       \end{ecvitemize}
       }
-   
-  \ecvtitle{September 2019 -- March 2020}{Security Consultant (Internship)}
-  \ecvitem{}{Accenture Security - Milan (Italy)}
-  \ecvitem[2.5mm]{}{
-  \begin{ecvitemize}
-      \item Analysis for the implementatation of \textit{Identity and Access Governance} (IAG) systems.;
-      \item Competence on installation, configuration and tweaking of \textit{Sailpoint Identity IQ} platform;
-      \item Development and testing of \textit{Identity IQ} plugins and feature (Java/Beanshell) in order to connect and integrate existing applications.
-  \end{ecvitemize}
-  }
 
-  \ecvsection{Education and Training}
+    \ecvsection{Certifications}
+
+    \ecvblueitem{December 2021}{Certified Kubernetes Application Developer (CKAD)}
+        \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
+        \ecvitem{Identifier}{ \textit{LF-owlpgjxmun} (https://training.linuxfoundation.org/certification/verify/)}\hfill
+        \smash{\includegraphics[width=1.5cm]{img/ckad-certified-kubernetes-application-developer.png}}
+    \ecvblueitem{November 2021}{Certified Kubernetes Administrator (CKA)}
+        \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
+        \ecvitem{Identifier}{ \textit{LF-4w8nbsr5xc} (https://training.linuxfoundation.org/certification/verify/)}\hfill
+        \smash{\includegraphics[width=1.7cm]{img/cka-certified-kubernetes-administrator.png}}
+
+    \ecvblueitem{February 2021}{AWS Certified Solution Architect - Associate (SAA-CO2)}
+        \ecvitem[.2cm]{Issuer}{Amazon Web Services (AWS)}
+        \ecvitem{Identifier}{\textit{2898P6CBJ111QMWC} (http://aws.amazon.com/verification)}\hfill
+        \smash{\includegraphics[width=1.5cm]{img/aws-certified-solutions-architect-associate.png}}
+
+
+    \ecvsection{Education and Training}
   
-  \ecvtitlelevel{September 2017-- March 2020}{Master's degree in Computer Science}{ISCED~7}
-  \ecvitem{}{University of Turin (Italy)}
-  \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude }
-  \ecvitem{Thesis}{Identity and Access governance : managing digital identities inside a company.}
+        \ecvtitlelevel{2017 -- 2020}{Master's degree in Computer Science}{ISCED~7}
+            \ecvitem{}{University of Turin Italy}
+            \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
+            \ecvitem{Thesis}{Identity and Access governance : managing digital identities inside a company.}
   
-  \ecvtitlelevel{Settembre 2014-- Ottobre 2017}{Bachelor's degree in Computer Science}{ISCED~6}
-  \ecvitem{}{University of Turin (Italy)}
-  \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude }
-  \ecvitem{Thesis}{Vulnerability assessment of Android application: a tool for automation.}
-  
-  
-  \ecvtitlelevel{2009--2014}{Computer Science diploma}{ISCED~4}
-  \ecvitem{}{ITIS Giuseppe Peano, Turin (Italy)}
-  \ecvitem[.2cm]{Mark}{ 75/100}    
   \pagebreak
-  \ecvsection{Certifications}
+  
+        \ecvtitlelevel{2014 -- 2017}{Bachelor's degree in Computer Science}{ISCED~6}
+            \ecvitem{}{University of Turin, Italy}
+            \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
+            \ecvitem{Thesis}{Vulnerability assessment of Android application: a tool for automation.}
 
-  \ecvblueitem{December 2021}{Certified Kubernetes Application Developer (CKAD)}
-  \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
-  \ecvitem{Identifier}{ LF-owlpgjxmun (https://training.linuxfoundation.org/certification/verify/)}\hfill
-  \smash{\includegraphics[width=1.5cm]{img/ckad-certified-kubernetes-application-developer.png}}
-
-  \ecvblueitem{November 2021}{Certified Kubernetes Administrator (CKA)}
-  \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
-  \ecvitem{Identifier}{ LF-4w8nbsr5xc (https://training.linuxfoundation.org/certification/verify/)}\hfill
-  \smash{\includegraphics[width=1.5cm]{img/cka-certified-kubernetes-administrator.png}}
-
-  \ecvblueitem{February 2021}{AWS Certified Solution Architect - Associate (SAA-CO2)}
-  \ecvitem[.2cm]{Issuer}{Amazon Web Services (AWS)}
-  \ecvitem{Identifier}{2898P6CBJ111QMWC (http://aws.amazon.com/verification)}\hfill
-  \smash{\includegraphics[width=1.5cm]{img/aws-certified-solutions-architect-associate.png}}
-
+  
+        \ecvtitlelevel{2009--2014}{Diploma in Computer Science}{ISCED~4}
+            \ecvitem{}{ITIS Giuseppe Peano, Turin (Italy)}
+  
 
   \ecvsection{Personal skills}
   \ecvmothertongue{Italian}
@@ -121,15 +122,22 @@
         
     \end{ecvitemize}
   }
+  
+
 
   
-\ecvsection{Other informations}
-
-\ecvblueitem{Hobbies and interest}{
-    Related to my job, I'd like to learn some concept about AI and in general to try out new technologies. In my free time instead, I like hiking, skiing or or trying out new sport. I also love to garden and take care of plants.
+    \ecvsection{Other informations}
+        \ecvblueitem{Licenses}{Driver license B}
+        \ecvblueitem{Hobbies and interest}{
+    Related to my job, I'd like to learn some concept about AI and in general to try out new technologies. In my free time instead, I like hiking, skiing or or trying out new sport. I also love chess, gardening and take care of plants.
 }
+
+        \ecvblueitem{Data handling}{
+            I authorize the processing of my personal data in accordance with Legislative Decree 30 June 2003, n. 196 "Code for the protection of personal data.
+        }
 
   
   \end{europasscv}
 
 \end{document}
+
