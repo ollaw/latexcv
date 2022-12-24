@@ -23,10 +23,10 @@ infra:
   stage: build
   image: pulumi/pulumi-python
   variables:
-    PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
-    CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
+    PULUMI_ACCESS_TOKEN: "$PULUMI_ACCESS_TOKEN"
+    CLOUDFLARE_API_TOKEN: "$CLOUDFLARE_API_TOKEN"
   before_script:
-    - pulumi stack select latexcv
+    - cd pulumi && pulumi stack select latexcv
     - python3 -m venv venv
     - venv/bin/pip install -r requirements.txt
   script:
