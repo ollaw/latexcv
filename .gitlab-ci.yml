@@ -22,7 +22,7 @@ latex:
 infra:
   stage: build
   image: pulumi/pulumi-python
-  environment:
+  variables:
     PULUMI_ACCESS_TOKEN: "${PULUMI_ACCESS_TOKEN}"
     CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_API_TOKEN}"
   before_script:
