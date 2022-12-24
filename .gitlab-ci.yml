@@ -23,8 +23,8 @@ infra:
   stage: build
   image: pulumi/pulumi-python
   variables:
-    PULUMI_ACCESS_TOKEN: "$PULUMI_ACCESS_TOKEN"
-    CLOUDFLARE_API_TOKEN: "$CLOUDFLARE_API_TOKEN"
+    PULUMI_ACCESS_TOKEN: $PULUMI_ACCESS_TOKEN
+    CLOUDFLARE_API_TOKEN: $CLOUDFLARE_API_TOKEN
   before_script:
     - printenv
     - cd pulumi && pulumi stack select latexcv
