@@ -26,6 +26,7 @@ infra:
     PULUMI_ACCESS_TOKEN: "$PULUMI_ACCESS_TOKEN"
     CLOUDFLARE_API_TOKEN: "$CLOUDFLARE_API_TOKEN"
   before_script:
+    - printenv
     - cd pulumi && pulumi stack select latexcv
     - python3 -m venv venv
     - venv/bin/pip install -r requirements.txt
