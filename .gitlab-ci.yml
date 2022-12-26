@@ -1,9 +1,6 @@
 stages:
 - build
 - release
-# - destroy
-
-
 
 latex:
   stage: build
@@ -19,17 +16,35 @@ latex:
     paths:
       - cv-${lang}.pdf
 
-infra:
+infra-preview:
   stage: build
   image: pulumi/pulumi-python
-  variables:
-    # PULUMI_ACCESS_TOKEN: "${PULUMI_TOKEN}"
-    # CLOUDFLARE_API_TOKEN: "${CLOUDFLARE_TOKEN}"
   before_script:
-    - printenv
     - cd pulumi && pulumi stack select latexcv
     - python3 -m venv venv
     - venv/bin/pip install -r requirements.txt
   script:
     - pulumi preview
 
+artifact-publish:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  script:
+    - aws s3 cp cv-it.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/it.pdf
+    - aws s3 cp cv-en.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/en.pdf
+  only:
+    - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
+  except:
+    - branches
+
+infra-up:
+  stage: release
+  image: pulumi/pulumi-python
+  before_script:
+    - cd pulumi && pulumi stack select latexcv
+    - python3 -m venv venv
+    - venv/bin/pip install -r requirements.txt
+  script:
+    - pulumi up --yes
+  only:
+  - main
