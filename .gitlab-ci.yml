@@ -1,0 +1,54 @@
+stages:
+- build
+- release
+
+latex:
+  stage: build
+  image: registry.gitlab.com/islandoftex/images/texlive:latest
+  parallel:
+    matrix:
+    - lang: [it, en]
+  script:
+    - pdflatex cv-${lang}.tex
+    - pdflatex cv-${lang}.tex
+  after_script:
+    - cat cv-${lang}.log
+  artifacts:
+    paths:
+      - cv-${lang}.pdf
+
+infra-preview:
+  stage: build
+  image: pulumi/pulumi-python
+  before_script:
+    - cd pulumi && pulumi stack select latexcv
+    - python3 -m venv venv
+    - venv/bin/pip install -r requirements.txt
+  script:
+    - pulumi preview
+
+artifact-publish:
+  stage: release
+  image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  parallel:
+    matrix:
+    - lang: [it, en]
+  script:
+    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${lang}.pdf
+  only:
+    - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
+  except:
+    - branches
+
+infra-up:
+  stage: release
+  image: pulumi/pulumi-python
+  before_script:
+    - cd pulumi && pulumi stack select latexcv
+    - python3 -m venv venv
+    - venv/bin/pip install -r requirements.txt
+  script:
+    - pulumi up --yes
+  only:
+  - main
