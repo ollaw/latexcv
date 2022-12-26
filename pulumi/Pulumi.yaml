@@ -1,0 +1,6 @@
+name: latexcv
+runtime:
+  name: python
+  options:
+    virtualenv: venv
+description: Stack to host personal CVs on S3 bucket.
