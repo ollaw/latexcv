@@ -10,6 +10,7 @@ latex:
     - lang: [it, en]
   script:
     - pdflatex cv-${lang}.tex
+    - pdflatex cv-${lang}.tex
   after_script:
     - cat cv-${lang}.log
   artifacts:
