@@ -3,6 +3,8 @@ config:
   latexcv:aws:
     cloudfront:
       alias: cv.ollaw.xyz
+    kms:
+      key: 2c9e5d1e-a20c-40a6-a4b7-1b8f5649de4e
     tags:
       app: latexcv
       env: production

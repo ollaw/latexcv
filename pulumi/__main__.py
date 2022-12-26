@@ -1,5 +1,5 @@
 import pulumi
-from pulumi_aws import s3, cloudfront, iam
+from pulumi_aws import s3, cloudfront, iam, kms
 import pulumi_cloudflare as cloudflare
 
 config = pulumi.Config()
@@ -15,13 +15,6 @@ bucket = s3.Bucket(
     "bucket",
     bucket="latexcv-artifacts",
     acl="private",
-    server_side_encryption_configuration=s3.BucketServerSideEncryptionConfigurationArgs(
-        rule=s3.BucketServerSideEncryptionConfigurationRuleArgs(
-            apply_server_side_encryption_by_default=s3.BucketServerSideEncryptionConfigurationRuleApplyServerSideEncryptionByDefaultArgs(
-                sse_algorithm="aws:kms",
-            ),
-        ),
-    ),
     tags=tags,
     opts=pulumi.ResourceOptions(protect=False),
 )
