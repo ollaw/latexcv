@@ -30,9 +30,12 @@ infra-preview:
 artifact-publish:
   stage: release
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  parallel:
+    matrix:
+    - lang: [it, en]
   script:
-    - aws s3 cp cv-it.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/it.pdf
-    - aws s3 cp cv-en.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/en.pdf
+    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${lang}.pdf
   only:
     - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
   except:
