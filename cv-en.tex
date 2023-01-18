@@ -5,14 +5,12 @@
 \documentclass[english,a4paper]{europasscv}
 \usepackage[english]{babel}
 \usepackage{comment}
-\usepackage{lastpage}
 \ecvname{Olla Gabriele}
 \ecvaddress{Via Nizza 356bis, Turin (TO), Italy}
 \ecvmobile{+39 348 6011 931}
 \ecvemail{ollagabriele@pm.me}
-\ecvgitlabpage{https://gitlab.com/ollaww}
-\ecvgithubpage{https://github.com/ollaw}
-\ecvlinkedinpage{https://www.linkedin.com/in/ollagabriele}
+\ecvgitlabpage{ollaww}
+\ecvgithubpage{ollaw}
 
 \ecvgender{Male}
 \ecvdateofbirth{17/02/1995}
@@ -21,117 +19,129 @@
 
 
 \begin{document}
-  \begin{europasscv}
-
-  \ecvpersonalinfo
-
-  \ecvsection{Work expereinces}
-  
-  \ecvtitle{September 2022 -- Now}{Site Reliability Engineer}
-  \ecvitem{}{\textbf{Prima Assicurazioni} - Milan, Italy [\textit{Full Remote working}] }
-  \ecvtitle{May 2022 -- September 2022}{DevOps Engineer}
-  \ecvitem{}{\textbf{Prima Assicurazioni} - Milan, Italy [\textit{Full Remote working}] }
-
-  \ecvtitle{September 2021 -- May 2022}{Cloud Engineer }
-  \ecvitem{}{\textbf{DXC Technology} - Cernusco sul Naviglio (Milan), Italy [\textit{Hybrid working}]}
-  \ecvitem[2.5mm]{}{
-    \begin{ecvitemize}
-        \item Installation and administration of Kubernetes Cluster (MKE, RKE\dots);
-        \item Creation of infrastructures on OpenStack;
-        \item Creation and management of CI/CD processes (Docker Swarm, Kubernetes);
-        \item Troubleshooting on Linux VMs.
-      \end{ecvitemize}
-  }
-  
-  \ecvtitle{March 2020 -- August 2021}{AWS Cloud Engineer}
-  \ecvitem{}{\textbf{Storm Reply} - Turin, Italy [\textit{On site}]}
-    \ecvitem[2.5mm]{}{
-      \begin{ecvitemize}
-        \item Design and implementation of AWS infastructures;
-        \item Creation of DevOps toolchains for production environments (Jenkins, EKS\dots);
-        \item Monitoring and Logging platforms (Grafana, Prometheus, ELK\dots).
-      \end{ecvitemize}
-      }
-
-    \ecvsection{Certifications}
-
-    \ecvblueitem{December 2021}{Certified Kubernetes Application Developer (CKAD)}
-        \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
-        \ecvitem{Identifier}{ \textit{LF-owlpgjxmun} (https://training.linuxfoundation.org/certification/verify/)}\hfill
-        \smash{\includegraphics[width=1.5cm]{img/ckad-certified-kubernetes-application-developer.png}}
-    \ecvblueitem{November 2021}{Certified Kubernetes Administrator (CKA)}
-        \ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
-        \ecvitem{Identifier}{ \textit{LF-4w8nbsr5xc} (https://training.linuxfoundation.org/certification/verify/)}\hfill
-        \smash{\includegraphics[width=1.7cm]{img/cka-certified-kubernetes-administrator.png}}
-
-    \ecvblueitem{February 2021}{AWS Certified Solution Architect - Associate (SAA-CO2)}
-        \ecvitem[.2cm]{Issuer}{Amazon Web Services (AWS)}
-        \ecvitem{Identifier}{\textit{2898P6CBJ111QMWC} (http://aws.amazon.com/verification)}\hfill
-        \smash{\includegraphics[width=1.5cm]{img/aws-certified-solutions-architect-associate.png}}
-
-
-    \ecvsection{Education and Training}
-  
-        \ecvtitlelevel{2017 -- 2020}{Master's degree in Computer Science}{ISCED~7}
-            \ecvitem{}{University of Turin Italy}
-            \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
-            \ecvitem{Thesis}{Identity and Access governance : managing digital identities inside a company.}
-  
-  \pagebreak
-  
-        \ecvtitlelevel{2014 -- 2017}{Bachelor's degree in Computer Science}{ISCED~6}
-            \ecvitem{}{University of Turin, Italy}
-            \ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
-            \ecvitem{Thesis}{Vulnerability assessment of Android application: a tool for automation.}
-
-  
-        \ecvtitlelevel{2009--2014}{Diploma in Computer Science}{ISCED~4}
-            \ecvitem{}{ITIS Giuseppe Peano, Turin (Italy)}
-  
-
-  \ecvsection{Personal skills}
-  \ecvmothertongue{Italian}
-  \ecvlanguageheader
-  \ecvlanguage{Inglese}{B2.2}{B2.2}{B2.2}{B2.2}{B2.2}
-  \ecvlanguagecertificate{Speexx Language Assessment (05/2021)}
-  \ecvlanguagecertificate{Preliminary English Test (07/2014)}
-   
-  \ecvblueitem{Team and communication}{
-  Excellent ability to work in team started since childhood by practicing for several years team sports, as well as in different projects carried out during the university and in the workplace. Great communication skill, developed by being in close contact with the clients during my jobs.
-  }
-  
-  
-  
-  \ecvblueitem{Digital skills}{
-    \begin{ecvitemize}
-        \item Good knowledge of AWS, with experiences in particular on services related to DevOps and automation (\textit{CloudFormation}, \textit{CodePipeline}, \textit{CodeDeploy...} );
-        \item Excellent knowledge of \textit{Kubernetes} (both setup from scratch and on \textit{EKS}), and good knowledge on related tools like \textit{Helm} and \textit{Kustomize}.
-        \item Good knowledge on \textit{IaC} tools including \textit{Terraform}, \textit{CloudFormation} (and \textit{SAM}), \textit{CDK} and \textit{Serverless} framework. Basic knowledge of configuration management tools like \textit{Ansible};
-        \item Good understanding of Serverless paradigm, microservices paradigm and of containers, on their orchestration (\textit{Kubernetes}, \textit{EKS}) and on their release and monitoring on production environment (\textit{Prometheus}, \textit{Grafana});
-        \item Good knowledge and experience in \textit{Git} usage, in \textit{GitOps} paradigm and experience in the creation of CI/CD processes using automation tools including \textit{Jenkins} (using the scalable approach of \textit{Jenkins on Kubernetes}), \textit{Bamboo} (Atlassian) e \textit{GitLab}.
-        \item Excellent competences on software development, in particular with \textit{Java} language. Good knowledge on other languages like \textit{Kotlin} (+ SDK Android and Spring framework), C (+ OpenMP/MPI) and JS (+ React). Good skills also on scripting launguages like \textit{Bash} or \textit{Python}.
-        \item Basic knowledge of \textit{Openstack}.
-        \item Good knowledge on RDBMS (and SQL language)
-        \item Familiarity and experience with Linux system
-        
-    \end{ecvitemize}
-  }
-  
-
-
-  
-    \ecvsection{Other informations}
-        \ecvblueitem{Licenses}{Driver license B}
-        \ecvblueitem{Hobbies and interest}{
-    Related to my job, I'd like to learn some concept about AI and in general to try out new technologies. In my free time instead, I like hiking, skiing or or trying out new sport. I also love chess, gardening and take care of plants.
-}
-
-        \ecvblueitem{Data handling}{
-            I authorize the processing of my personal data in accordance with Legislative Decree 30 June 2003, n. 196 "Code for the protection of personal data.
-        }
-
-  
-  \end{europasscv}
+\begin{europasscv}
+		
+	\ecvpersonalinfo
+			
+	\vspace{.75cm}
+				
+	\ecvsection{Work experiences}
+				  
+	\ecvtitle{September 2022 -- Now }{Site Reliability Engineer}
+	\ecvitem{}{\textbf{Prima Assicurazioni}, Milann [\textit{Full remote}]}
+	\ecvitem[2.5mm]{}{
+		\begin{ecvitemize}
+			\item Split, migration and management of several account and infrastructures on AWS (Pulumi);
+			\item Administration of Kubernetes clusters (EKS, Istio);
+			\item Design and implmenetation of CI/CD toolchains (Github Actions, Helm);
+			\item Infrastructure monitoring (Datadog);
+			\item DNS and CDN management (Cloudflare).
+		\end{ecvitemize}
+	}
+	\vspace{0.5cm}
+				    
+	\ecvtitle{May 2022 -- September 2022 }{DevOps Engineer}
+	\ecvitem{}{\textbf{Prima Assicurazioni}, Milano [\textit{Full remote}]}
+	\ecvitem[2.5mm]{}{
+		\begin{ecvitemize}
+			\item Administration of Kubernetes and ECS clusters(EKS);
+			\item Infrastructure design and implementations (AWS, Pulumi, CloudFormation);
+			\item Design and implmenetation of CI/CD toolchains (Drone, Helm).
+			\item Infrastructure monitoring (ELK, Datadog).
+		\end{ecvitemize}
+	}
+	\vspace{0.5cm}
+			
+	\ecvtitle{September 2021 -- May 2022}{Cloud Engineer }
+	\ecvitem{}{\textbf{DXC Technology} - Cernusco sul Naviglio (Milan), Italy [\textit{Hybrid working}]}
+	\ecvitem[2.5mm]{}{
+		\begin{ecvitemize}
+			\item Installation and administration of Kubernetes Cluster (MKE, RKE\dots);
+			\item Creation of infrastructures on OpenStack;
+			\item Creation and management of CI/CD processes (Docker Swarm, Kubernetes);
+			\item Troubleshooting on Linux VMs.
+		\end{ecvitemize}
+	}
+	\vspace{0.5cm}
+		   
+	\ecvtitle{March 2020 -- August 2021}{AWS Cloud Engineer}
+	\ecvitem{}{\textbf{Storm Reply} - Turin, Italy [\textit{On site}]}
+	\ecvitem[2.5mm]{}{
+		\begin{ecvitemize}
+			\item Design and implementation of AWS infastructures;
+			\item Creation of DevOps toolchains for production environments (Jenkins, EKS\dots);
+			\item Monitoring and Logging platforms (Grafana, Prometheus, ELK\dots).
+		\end{ecvitemize}
+	}
+			
+	\pagebreak
+		 
+	\ecvsection{Education and Training}
+			  
+	\ecvtitlelevel{2017 -- 2020}{Master's degree in Computer Science}{ISCED~7}
+	\ecvitem{}{\textbf{University of Turin, Italy}}
+	\ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
+	\ecvitem{Thesis}{Identity and Access governance : managing digital identities inside a company.}
+			  	  
+	\ecvtitlelevel{2014 -- 2017}{Bachelor's degree in Computer Science}{ISCED~6}
+	\ecvitem{}{\textbf{University of Turin, Italy}}
+	\ecvitem[.2cm]{Mark}{ 110/110 summa cum laude. }
+	\ecvitem{Thesis}{Vulnerability assessment of Android application: a tool for automation.}
+			
+	\vspace{1cm}
+	\ecvsection{Technical skills}
+			  
+	\ecvblueitem{Cloud}{Extensive familiarity and experience with AWS as well as a basic knowledge of Azure, GCP and OpenStack. Excellent knowledge of several tools for IAC including \textit{Pulumi}, \textit{Terraform} and CloudFormation (and \textit{SAM}) }
+		
+	\ecvblueitem{Container and orchestration}{Excellent skills in container-related environments and excellent knowledge of Kubernetes, both managed (EKS,AKS) and self-managed (MKE,RKE). Good knowledge and experience with some of the major Kubernetes related tools too, such as \textit{Helm}, \textit{Istio} and \textit{Kustomize}.}
+		
+	\ecvblueitem{Versioning and CI/CD}{Good knowledge of \textit{Git} and extensive experience using \textit{GitHub} and \textit{GitLab}. Excellent skills in analyzing and implementing CI/CD processes using automation tools including \textit{Gitlab CI}, \textit{GitHub Actions}, \textit{Harness Drone}, \textit{Jenkins} (leveraging the scalable approach \textit{Jenkins on Kubernetes}), and \textit{Bamboo}. Knowledge and experience on \textit{GitOps} paradigm and its application with \textit{GitLab Agent} and \textit{Flux}.}
+		
+	\ecvblueitem{Programming languages}{Excellent knowledge of \textit{Java}, \textit{Kotlin} and \textit{Python} as well as university knowledge of several languages including C (+ OpenMP/MPI) and JS (+ \textit{React}/\textit{VUE}). Good scripting skills with \textit{Bash} and university experience in mobile development (Android SDK).}
+		
+	\ecvblueitem{Miscellaneous}{Good knowledge of RDBMS (and SQL language), major observability systems (\textit{Datadog}, \textit{Prometheus}, \textit{Grafana} and the \textit{ELK} stack) as well as Linux systems in general.}
+		
+	\vspace{1cm}
+			
+	\ecvsection{Languages}
+	\ecvmothertongue{Italiano}
+	\ecvblueitem{Other languages}{
+		English (C1 - Fluentify Language Assessment 12/2022)
+	}
+				
+			
+	\pagebreak
+			  
+	\ecvsection{Certifications}
+			
+	\ecvblueitem{December 2021}{Certified Kubernetes Application Developer (CKAD)}
+	\ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
+	\ecvitem{Identifier}{ \textit{LF-owlpgjxmun} (https://training.linuxfoundation.org/certification/verify/)}\hfill
+	\smash{\includegraphics[width=1.5cm]{img/ckad-certified-kubernetes-application-developer.png}}
+	\ecvblueitem{November 2021}{Certified Kubernetes Administrator (CKA)}
+	\ecvitem[.2cm]{Issuer}{Cloud Native Computing Foundation (CNCF)}
+	\ecvitem{Identifier}{ \textit{LF-4w8nbsr5xc} (https://training.linuxfoundation.org/certification/verify/)}\hfill
+	\smash{\includegraphics[width=1.7cm]{img/cka-certified-kubernetes-administrator.png}}
+			
+	\ecvblueitem{February 2021}{AWS Certified Solution Architect - Associate (SAA-CO2)}
+	\ecvitem[.2cm]{Issuer}{Amazon Web Services (AWS)}
+	\ecvitem{Identifier}{\textit{2898P6CBJ111QMWC} (http://aws.amazon.com/verification)}\hfill
+	\smash{\includegraphics[width=1.5cm]{img/aws-certified-solutions-architect-associate.png}}
+		
+	\vspace{1cm}
+			
+			  
+	\ecvsection{Other informations}
+	\ecvblueitem{Licenses}{Driver license B}
+	\ecvblueitem{Hobbies and interest}{
+		In my free time I like hiking, skiing or trying out new sport.\newline I also love chess, gardening and take care of the aquarium and of plants.
+	}
+			
+	\ecvblueitem{Data handling}{
+		I authorize the processing of my personal data in accordance with Legislative Decree 30 June 2003, n. 196 "Code for the protection of personal data.
+	}
+			
+			  
+\end{europasscv}
 
 \end{document}
-
