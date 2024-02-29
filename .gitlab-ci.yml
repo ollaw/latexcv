@@ -49,12 +49,9 @@ artifact-publish:
   before_script:
     - !reference [.aws-setup, before_script]
   script:
-    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${CI_COMMIT_REF_NAME}/${lang}.pdf
     - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${lang}.pdf
   only:
-    - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
-  except:
-    - branches
+    - main
 
 infra-up:
   stage: release
