@@ -35,7 +35,9 @@ infra-preview:
     - venv/bin/pip install -r requirements.txt
   script:
     - pulumi preview
-
+  only:
+    - branches
+    
 artifact-publish:
   stage: release
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
