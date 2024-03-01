@@ -40,6 +40,7 @@ def setup(bucket: Bucket, certificate: Certificate) -> Distribution:
                 origin_access_control_id=oac.id,
             )
         ],
+        default_root_object="en.pdf",
         enabled=True,
         aliases=[alias],
         default_cache_behavior=DistributionDefaultCacheBehaviorArgs(
