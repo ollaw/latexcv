@@ -3,6 +3,6 @@
 # latexcv
 My personal CV.
 
-- [Italian](https://cv.ollaw.xyz/it.pdf)
-- [English](https://cv.ollaw.xyz/en.pdf)
+- 🇮🇹 [IT](https://cv.ollaw.xyz/it.pdf)
+- 🇬🇧 [EN](https://cv.ollaw.xyz/en.pdf)
 
