@@ -2,8 +2,6 @@ import _bucket
 import _certificate
 import _cloudflare
 import _distribution
-import pulumi_cloudflare as cloudflare
-from pulumi_aws import acm, cloudfront, iam, s3
 
 certificate = _certificate.setup()
 
