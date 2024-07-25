@@ -34,8 +34,8 @@ artifact-publish:
   before_script:
     - !reference [.aws-setup, before_script]
   script:
-    - aws s3 cp cv-${lang}.pdf s3://$BUCKET_NAME/${CI_COMMIT_REF_NAME}/${lang}.pdf
-    - aws s3 cp cv-${lang}.pdf s3://$BUCKET_NAME/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://${BUCKET_NAME}/${CI_COMMIT_REF_NAME}/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://${BUCKET_NAME}/${lang}.pdf
   only:
     - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
   except:
