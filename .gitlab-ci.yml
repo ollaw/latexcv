@@ -1,8 +1,9 @@
 .aws-setup:
   before_script:
     - mkdir -p ~/.aws
-    - echo "${CI_JOB_JWT_V2}" > /tmp/web_identity_token
+    - echo "${GITLAB_OIDC_TOKEN}" > /tmp/web_identity_token
     - echo -e "[profile oidc]\nrole_arn=${ROLE_ARN}\nweb_identity_token_file=/tmp/web_identity_token" > ~/.aws/config
+
 
 stages:
 - build
@@ -26,6 +27,9 @@ latex:
 artifact-publish:
   stage: release
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
+  id_tokens:
+    GITLAB_OIDC_TOKEN:
+      aud: https://gitlab.com
   variables:
     AWS_PROFILE: oidc
   parallel:
