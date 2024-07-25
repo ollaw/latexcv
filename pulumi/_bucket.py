@@ -12,10 +12,10 @@ import pulumi
 
 def bucket() -> Bucket:
     tags = pulumi.Config().require_object("aws").get("tags") or {}
-    return Bucket("bucket", bucket="latexcv-artifacts", acl="private", tags=tags)
+    return Bucket("my-latex-cv", acl="private", tags=tags)
 
 
-def policies(bucket: Bucket, distribution: Distribution) -> Bucket:
+def policies(bucket: Bucket, distribution: Distribution):
     # Bucket policy definition
     bucket_policy = get_policy_document_output(
         statements=[

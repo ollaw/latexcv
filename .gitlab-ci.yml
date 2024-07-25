@@ -23,21 +23,6 @@ latex:
     paths:
       - cv-${lang}.pdf
 
-infra-preview:
-  stage: build
-  image: pulumi/pulumi-python
-  variables:
-    AWS_PROFILE: oidc
-  before_script:
-    - !reference [.aws-setup, before_script]
-    - cd pulumi && pulumi stack select latexcv
-    - python3 -m venv venv
-    - venv/bin/pip install -r requirements.txt
-  script:
-    - pulumi preview
-  only:
-    - branches
-    
 artifact-publish:
   stage: release
   image: registry.gitlab.com/gitlab-org/cloud-deploy/aws-base:latest
@@ -49,21 +34,9 @@ artifact-publish:
   before_script:
     - !reference [.aws-setup, before_script]
   script:
-    - aws s3 cp cv-${lang}.pdf s3://latexcv-artifacts/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://$BUCKET_NAME/${CI_COMMIT_REF_NAME}/${lang}.pdf
+    - aws s3 cp cv-${lang}.pdf s3://$BUCKET_NAME/${lang}.pdf
   only:
-    - main
-
-infra-up:
-  stage: release
-  image: pulumi/pulumi-python
-  variables:
-    AWS_PROFILE: oidc
-  before_script:
-    - !reference [.aws-setup, before_script]
-    - cd pulumi && pulumi stack select latexcv
-    - python3 -m venv venv
-    - venv/bin/pip install -r requirements.txt
-  script:
-    - pulumi up --yes
-  only:
-  - main
+    - /^(\d+\.)?(\d+\.)?(\*|\d+)$/
+  except:
+    - branches
