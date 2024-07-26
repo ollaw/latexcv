@@ -2,7 +2,7 @@ config:
   aws:region: eu-central-1
   latexcv:aws:
     cloudfront:
-      alias: cv.ollaw.xyz
+      alias: resume.ollaw.xyz
     kms:
       key: 2c9e5d1e-a20c-40a6-a4b7-1b8f5649de4e
     tags:
@@ -10,7 +10,7 @@ config:
       env: production
   latexcv:cloudflare:
     record:
-      name: cv
+      name: resume
       ttl: 3600
       type: CNAME
     zoneid: 6368df1a7d906eac861f8abaf30ddc76
