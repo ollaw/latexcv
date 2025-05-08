@@ -7,90 +7,105 @@
 \usepackage{comment}
 \usepackage{lastpage}
 \usepackage{hyperref}
+\usepackage{fontawesome5}
+
 \ecvname{Olla Gabriele}
-\ecvaddress{Torino (TO)}
-
-\ecvemail{jobs@ollaw.xyz}
-\ecvlinkedinpage{https://www.linkedin.com/in/ollagabriele}
-\ecvgitlabpage{ollaww}
-\ecvgithubpage{ollaw}
-
-\ecvdateofbirth{17/02/1995}
-\ecvnationality{Italiana}
 
 
 \begin{document}
+
 \begin{europasscv}
-		
-\ecvpersonalinfo
+
+
+\ecvtitle{Nome e Cognome}{{{\LARGE Olla Gabriele}}}
+\vspace{0.2cm}
+\ecvitem{Data di Nascita}{17/02/1995} 
+\ecvitem{Nazionalità}{Italiana}
+\ecvitem{Mail}{\href{mailto:jobs@ollaw.xyz}{jobs@ollaw.xyz} \href{mailto:ollagabriele@proton.me}{ollagabriele@proton.me}}
+\ecvitem{Link}{ \textcolor{ecvrulecolor}{\faLinkedin} \href{https://linkedin.com/in/ollagabriele}{ollagabriele} \quad \textcolor{ecvrulecolor}{\faGitlab} \href{https://gitlab.com/ollaww}{ollaww} \quad \textcolor{ecvrulecolor}{\faGithub} \href{https://github.com/ollaw}{ollaw}}
+
 	
 \ecvsection{Esperienza Lavorativa}
-	  
-\ecvtitle{Dal 05/2022}{Site Reliability Engineer (precedentemente DevOps Engineer)}
-\ecvitem{Azienda}{\textbf{Prima Assicurazioni}, Milano [\textit{Completamente remoto}]}
-\ecvitem{Tecnologie}{AWS, Kubernetes, Helm, Pulumi, GitHub Actions, Okta, Datadog, Vault.}
-\vspace{0.5cm}
-	  
-\ecvtitle{09/2021 -- 05/2022}{Cloud Engineer}
-\ecvitem{Azienda}{\textbf{DXC Technology}, Cernusco sul Naviglio (MI) [\textit{Lavoro ibrido}]}
-\ecvitem{Tecnologie}{Kubernetes (MKE, RKE), Helm, Docker Swarm, Gitlab, Terraform, Ansible.}
 
-\vspace{0.5cm}
-	
-\ecvtitle{3/2020 -- 08/2021}{Cloud Engineer}
-\ecvitem{Azienda}{\textbf{Storm Reply}, Torino [\textit{Lavoro ibrido}]}
-\ecvitem{Tecnologie}{AWS, Kubernetes, Jenkins, ELK.}
-\vspace{0.5cm}
+\ecvtitle{05/2022 -- Presente}{Site Reliability Engineer}
+\ecvitem{Azienda}{\textbf{Prima Assicurazioni}, Milano [\textit{Da remoto}]}
+\ecvitem{Attività principali}{%
+  \begin{ecvitemize}
+    \item Progettazione e gestione dell’infrastruttura AWS tramite Pulumi e Terraform.
+    \item Introduzione di HashiCorp Vault come secret manager centralizzato.
+    \item Integrazione di Okta con gli strumenti aziendali (GitHub, Vault, Datadog, RabbitMQ).
+    \item Manutenzione dell’infrastruttura CI/CD con GitHub Actions e supporto ai team di sviluppo.
+    \item Migrazioni di cluster RabbitMQ e ottimizzazione dei costi cloud.
+  \end{ecvitemize}
+}
+\vspace{0.2cm}
+
+\ecvtitle{09/2021 -- 05/2022}{Cloud Engineer}
+\ecvitem{Azienda}{\textbf{DXC Technology}, Cernusco sul Naviglio (MI) [\textit{Ibrido}]}
+\ecvitem{Attività principali}{%
+  \begin{ecvitemize}
+    \item Provisioning di cluster Kubernetes basati su MKE e RKE.
+    \item Creazione di infrastrutture su OpenStack utilizzando Terraform.
+    \item Configurazione automatizzata di macchine virtuali tramite Ansible.
+  \end{ecvitemize}
+}
+\vspace{0.2cm}
+
+\ecvtitle{03/2020 -- 08/2021}{Cloud Engineer}
+\ecvitem{Azienda}{\textbf{Storm Reply}, Torino [\textit{Ibrido}]}
+\ecvitem{Attività principali}{%
+  \begin{ecvitemize}
+    \item Gestione e scaling di Jenkins su Kubernetes per pipeline CI/CD.
+    \item Migrazioni su AWS con provisioning infrastrutturale via CloudFormation e Terraform.
+    \item Gestione dei processi di rilascio su EKS ed EC2 (Linux/Windows) tramite CodeDeploy.
+    \item Setup e configurazione di uno stack ELK per il monitoraggio centralizzato.
+  \end{ecvitemize}
+}
+\vspace{0.2cm}
+
+\ecvsection{Certificazioni}
+
+
+    \ecvitem{Linux Foundation, 2025}{FinOps Certified Engineer} 
+    \ecvitem{Hashicorp, 2025}{HashiCorp Certified: Vault Associate (003)} 
+    \ecvitem{Linux Foundation, 2023}{Certified Kubenretes Security Specialist (CKS)} 
+	\ecvitem{Linux Foundation, 2021}{Certified Kubernetes Application Developer (CKAD)}
+	\ecvitem{Linux Foundation, 2021}{Certified Kubernetes Administrator (CKA)}        
+	\ecvitem{AWS, 2021}{AWS Solution Architect (SAA-CO2)}
+
+
 
 	           
 \ecvsection{Istruzione}
 	  
 \ecvtitlelevel{2017 -- 2020}{Laurea Magistrale in Informatica e Tecnologie}{ISCED~7}
-\ecvitem{}{\textbf{Università di Torino}}
-\ecvitem[.2cm]{Voto}{ 110/110 con lode}
+\ecvitem{}{\textit{Università degli studi di Torino}}
+\ecvitem[.2cm]{Votazione}{ 110/110 con lode}
 \ecvitem{Tesi}{Identity and Access governance: gestione delle identità digitali all'interno di un'azienda.}
 	  
 	  
 \ecvtitlelevel{2014 -- 2017}{Laurea Triennale in Informatica e Tecnologie}{ISCED~6}
-\ecvitem{}{\textbf{Università di Torino}}
-\ecvitem[.2cm]{Voto}{ 110/110 con lode}
+\ecvitem{}{\textit{Università degli studi di Torino}}
+\ecvitem[.2cm]{Votazione}{ 110/110 con lode}
 \ecvitem{Tesi}{Vulnerability assessment di applicazioni Android: uno strumento per l'automazione.}
 	
  
 \ecvsection{Competenze Tecniche}
 
-    \ecvblueitem{Cloud Computing}{Vasta esperienza nel cloud, in particolare su Amazon Web Services (AWS). Competenze approfondite nella progettazione, implementazione e migrazione di infrastrutture, specializzazione nella configurazione e gestione di AWS Organizations tramite Identity Center per una governance efficiente delle risorse cloud. Conoscenza avanzata di strumenti di Infrastructure as Code (IaC) come Pulumi e Terraform.}
 
-    \ecvblueitem{IAM \& Secrets Management}{Ampia esperienza nell'implementazione e configurazione di soluzioni IAM su AWS, inclusa l'ampia utilizzazione di Okta come Identity Provider (IdP) e la configurazione di Okta come soluzione centralizzata di Single Sign-On (SSO) per una vasta gamma di applicazioni critiche come RabbitMQ (CloudAMQP), Artifactory, AWS e Vault. Inoltre, esperienza nella configurazione ed integrazione di Vault per la gestione sicura dei segreti e dei cicli di vita delle chiavi di crittografia, garantendo la confidenzialità e l'integrità dei dati sensibili nell'ambiente cloud.}
+\ecvblueitem{Cloud Computing}{Solida esperienza nella progettazione e gestione di infrastrutture su Amazon Web Services (AWS), con particolare attenzione alla scalabilità, sicurezza e ottimizzazione dei costi. Responsabile della gestione di ambienti multi-account con strutture organizzative centralizzate e controllo granulare degli accessi. Competenza avanzata nell'uso di strumenti di Infrastructure as Code (IaC) come Pulumi (per la gestione moderna delle risorse cloud) e Terraform.}
 
-    \ecvblueitem{Container e orchestrazione}{Eccellente competenza nell'uso dei container e conoscenza approfondita di Kubernetes, sia in ambienti gestiti (come EKS) che auto-gestiti (MKE e RKE). Esperienza consolidata nella migrazione di carichi di lavoro di produzione tra cluster diversi e nell'integrazione con strumenti di terze parti, come Okta e Vault.}
+\ecvblueitem{IAM \& Secrets Management}{Responsabile dell’introduzione e gestione di soluzioni IAM complesse in ambienti enterprise. Ampia esperienza nell’integrazione di Okta come Identity Provider (IdP) e Single Sign-On (SSO) per strumenti critici (AWS, GitHub, Vault, RabbitMQ, Artifactory [...]). Progettazione e adozione di HashiCorp Vault come secret manager centralizzato, includendo la definizione di policy, l’integrazione con Kubernetes e la gestione sicura del ciclo di vita dei segreti.}
 
-    \ecvblueitem{Competenze Aggiuntive}{Padronanza di Python, Java e Kotlin, con esperienza pratica nell'implementazione di progetti software. Conoscenza sufficiente di linguaggi come Go e C (con esperienza in OpenMP/MPI) e JavaScript (con competenze in React/Vue). Esperienza universitaria nello sviluppo mobile utilizzando Android SDK. Abilità dimostrate nel lavorare in team, collaborando efficacemente con colleghi per raggiungere obiettivi comuni. Abilità dimostrate nel lavoro remoto, garantendo produttività e qualità del lavoro anche in contesti distribuiti.}
+\ecvblueitem{Container e orchestrazione}{Competenza avanzata con container e orchestratori. Gestione e provisioning di cluster Kubernetes sia gestiti (EKS) che self-hosted (MKE, RKE), con esperienza in scenari multi-cluster e automazione del deployment. Esecuzione di migrazioni di carichi di lavoro e integrazione con strumenti esterni come Vault e Okta.}
+
+\ecvblueitem{Messaging \& Event Systems}{Esperienza diretta nella gestione e migrazione di cluster RabbitMQ, inclusa la federazione tra ambienti e la gestione delle configurazioni su CloudAMQP in ambienti multi-tenant. Integrazione di RabbitMQ con sistemi di autenticazione centralizzati e monitoring.}
+
+\ecvblueitem{Tooling \& DevOps}{Gestione dell’infrastruttura CI/CD con GitHub Actions. Setup e mantenimento di strumenti per feature flagging (LaunchDarkly) e observability (Datadog). Esperienza nell’automazione di pipeline, nei processi di rilascio su ambienti containerizzati e nell’adozione di metriche per il monitoraggio e l’ottimizzazione delle performance.}
+
+\ecvblueitem{Competenze Aggiuntive}{Buona padronanza di Python, Java e Kotlin. Conoscenze di base in Go e C (anche in ambito parallelo con OpenMP/MPI) e JavaScript con competenze in frontend (React/Vue). Esperienza nello sviluppo mobile in ambito accademico con Android SDK. Ottime capacità di collaborazione in team distribuiti e autonomia nel lavoro remoto.}
+
 	
-
-
-\ecvsection{Certificazioni}
-
-    \ecvblueitem{Novembre 2023}{Certified Kubenretes Security Specialist (CKS)}
-	\ecvitem[.2cm]{Ente Certificatore}{Cloud Native Computing Foundation (CNCF)}
-	\ecvitem{ID}{ LF-mf4uknkmry (https://training.linuxfoundation.org/certification/verify/)}\hfill
-	\smash{\includegraphics[width=1.5cm]{img/cks.png}}
-	    
-	\ecvblueitem{Dicembre 2021}{Certified Kubernetes Application Developer (CKAD)}
-	\ecvitem[.2cm]{Ente Certificatore}{Cloud Native Computing Foundation (CNCF)}
-	\ecvitem{ID}{ LF-owlpgjxmun (https://training.linuxfoundation.org/certification/verify/)}\hfill
-	\smash{\includegraphics[width=1.5cm]{img/ckad.png}}
-		        
-	\ecvblueitem{Novembre 2021}{Certified Kubernetes Administrator (CKA)}
-	\ecvitem[.2cm]{Ente Certificatore}{Cloud Native Computing Foundation (CNCF)}
-	\ecvitem{ID}{ LF-4w8nbsr5xc (https://training.linuxfoundation.org/certification/verify/)}\hfill
-	\smash{\includegraphics[width=1.5cm]{img/cka.png}}
-		        
-	\ecvblueitem{Febbraio 2021}{AWS Solution Architect (SAA-CO2)}
-	\ecvitem[.2cm]{Ente Certificatore}{Amazon Web Services (AWS)}
-	\ecvitem{ID}{2898P6CBJ111QMWC (http://aws.amazon.com/verification)}\hfill
-	\smash{\includegraphics[width=1.5cm]{img/aws-certified-solutions-architect-associate.png}}
-
 \ecvsection{Lingue}
    \ecvmothertongue{Italiano}
    \ecvblueitem{Altre Lingue}{Inglese (C1 - Fluentify Language Assessment 12/2022)}
@@ -98,15 +113,10 @@
 
    \ecvsection{Informazioni Aggiuntive}
 	    
-   \ecvblueitem{Patente di Guida}{Categoria B}
-	        
-   \ecvblueitem{Interessi e Hobby}{
-        Nel tempo libero, mi piacciono vari sport, in particolare sciare, fare trekking o giocare a calcio. Mi piace anche leggere, giocare a scacchi, mantenere un acquario e fare giardinaggio.
-    }
+   \ecvblueitem{Patente di Guida}{A, B}
 	        
    \ecvblueitem{Trattamento dei Dati}{Autorizzo il trattamento dei miei dati personali in conformità al Decreto Legislativo 30 giugno 2003, n. 196 "Codice in materia di protezione dei dati personali".}
 	
-	  
 
 		  
 \end{europasscv}
